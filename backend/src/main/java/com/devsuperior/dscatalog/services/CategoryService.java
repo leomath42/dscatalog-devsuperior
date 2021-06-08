@@ -32,8 +32,9 @@ public class CategoryService {
 		
 		return new CategoryDTO(entity);
 	}
-
-	public CategoryDTO save(CategoryDTO dto) {
+	
+	@Transactional
+	public CategoryDTO insert(CategoryDTO dto) {
 		// TODO Auto-generated method stub
 		
 		Category entity = new Category();
@@ -42,5 +43,16 @@ public class CategoryService {
 		entity = categoryRepository.save(entity);
 		
 		return new CategoryDTO(entity);
+	}
+	
+	@Transactional
+	public CategoryDTO update(Long id, CategoryDTO dto) {
+		
+		Category entity = categoryRepository.getOne(id);
+		
+		entity.setName(dto.getName());
+		
+		return new CategoryDTO(entity);
+		
 	}
 }
