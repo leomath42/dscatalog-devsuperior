@@ -35,6 +35,7 @@ public class CategoryService {
 		return categoryRepository.findAll(pageRequest).map(x -> new CategoryDTO(x));
 	}
 	
+	@Transactional(readOnly = true)
 	public CategoryDTO findById(Long id) {
 		Optional<Category> obj = categoryRepository.findById(id);
 		
@@ -49,7 +50,6 @@ public class CategoryService {
 		
 		Category entity = new Category();
 		entity.setName(dto.getName());
-		
 		entity = categoryRepository.save(entity);
 		
 		return new CategoryDTO(entity);
@@ -62,6 +62,7 @@ public class CategoryService {
 			Category entity = categoryRepository.getOne(id);
 			
 			entity.setName(dto.getName());
+			entity = categoryRepository.save(entity);
 			
 			return new CategoryDTO(entity);
 			
