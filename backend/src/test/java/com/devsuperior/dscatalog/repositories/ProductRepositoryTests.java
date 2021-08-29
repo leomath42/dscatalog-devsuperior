@@ -27,7 +27,7 @@ public class ProductRepositoryTests {
 	public void setUp() throws Exception {
 		this.existingId = 1L;
 		this.nonExistingId = 1000L;
-		this.countTotalProducts = 25L;
+		this.countTotalProducts = 25L;		
 	}
 	
 	@Test
